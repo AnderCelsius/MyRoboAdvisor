@@ -46,6 +46,16 @@ public static class HostingExtensions
         builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<RoboAdvisorDbContext>()
             .AddDefaultTokenProviders();
+
+        builder.Services.AddCors(c =>
+        {
+            c.AddPolicy("AllowOrigin", options =>
+            {
+                options.AllowAnyOrigin();
+                options.AllowAnyHeader();
+                options.AllowAnyMethod();
+            });
+        });
     }
 
     /// <summary>
