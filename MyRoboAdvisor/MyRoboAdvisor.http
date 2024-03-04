@@ -1,0 +1,6 @@
+@MyRoboAdvisor_HostAddress = http://localhost:5291
+
+GET {{MyRoboAdvisor_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
