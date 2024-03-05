@@ -65,17 +65,24 @@ namespace MyRoboAdvisor.Services.Implementations
         {
             var user = new ApplicationUser()
             {
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                UserName = model.UserName,
+                PhoneNumber = model.PhoneNumber,
                 // Todo: map user properties.
-                EmailConfirmed = true, // Since there is no email service
+                EmailConfirmed = true,
             };
 
             var result = await _userManager.CreateAsync(user, model.Password);
-            if (!result.Succeeded) return Response<string>.Fail(GetErrors(result), (int)HttpStatusCode.BadRequest);
+
+            if (!result.Succeeded)
+                return Response<string>.Fail(GetErrors(result), (int)HttpStatusCode.BadRequest);
 
             await _userRepository.InsertAsync(user);
             await _userRepository.SaveAsync();
-            return Response<string>.Success("User created successfully", user.Id, (int)HttpStatusCode.Created);
 
+            return Response<string>.Success("User created successfully", user.Id, (int)HttpStatusCode.Created);
         }
 
         /// <summary>

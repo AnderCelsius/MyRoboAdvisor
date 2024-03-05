@@ -11,7 +11,7 @@ using MyRoboAdvisor.Database.Data;
 namespace MyRoboAdvisor.Database.Data.Migrations
 {
     [DbContext(typeof(RoboAdvisorDbContext))]
-    [Migration("20240304144849_InitializeDb")]
+    [Migration("20240305082848_InitializeDb")]
     partial class InitializeDb
     {
         /// <inheritdoc />
@@ -189,6 +189,14 @@ namespace MyRoboAdvisor.Database.Data.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
